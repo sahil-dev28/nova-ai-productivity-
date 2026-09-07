@@ -3,6 +3,7 @@ import { Features } from "@/components/sections/Features";
 import { Hero } from "@/components/sections/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Product } from "@/components/sections/Product";
+import { Solutions } from "@/components/sections/Solutions";
 import { Stats } from "@/components/sections/Stats";
 import { TrustedBy } from "@/components/sections/TrustedBy";
 
@@ -17,6 +18,7 @@ export default function Home() {
         <Product />
         <HowItWorks />
         <Stats />
+        <Solutions />
       </main>
     </>
   );
