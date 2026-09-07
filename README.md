@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NOVA — Landing Page
 
-## Getting Started
+A dark-first landing page for NOVA, an AI productivity platform. Built from
+`docs/layout.md` (structure, spacing, type scale, behaviour) and
+`docs/tokens-and-copy.md` (palette and every string on the page).
 
-First, run the development server:
+Next.js 16 · React 19 · TypeScript · Tailwind CSS v4 · shadcn/ui
+
+## Running it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm dev      # http://localhost:3000
+pnpm build
+pnpm lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How it is put together
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/
+    globals.css        the whole token layer — palette, .light overrides,
+                       canvas, rhythm, type scale, breakpoints, motion
+    layout.tsx         fonts, theme provider, skip link
+    page.tsx           composes the thirteen sections, nothing else
+  components/
+    common/            Container, Section, Eyebrow, SectionHeading,
+                       Reveal, ThemeToggle, Logo, StatCounter, SocialIcon
+    layout/            Nav, MobileMenu, Footer, BackToTop
+    sections/          one file per section, in page order
+    ui/                shadcn primitives, restyled through tokens only
+  data/                typed content arrays, one per section
+docs/                  the design spec and the token/copy reference
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Every repeated list — features, stats, tabs, testimonials, plans, FAQs,
+footer links, logos — lives in `src/data` as a typed array with an exported
+type. Sections map over them; there are no content lists in JSX.
 
-## Learn More
+### Colour
 
-To learn more about Next.js, take a look at the following resources:
+Every colour is a CSS variable. Dark sits on `:root` so it paints before any
+JS runs; `.light` on `<html>` redefines the same names. The theme toggle
+flips that one class and nothing else in the page has to know. shadcn's
+semantic tokens are remapped onto the NOVA palette in the same `@theme`
+block, so the primitives inherit the design instead of being forked. No
+component contains a raw hex value.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Responsive
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Grids use `auto-fit` + `minmax`, so reflow happens at content-driven widths
+rather than at breakpoints. Tailwind's default breakpoints are cleared, which
+means the compiled stylesheet can only ever contain the three the spec
+allows — 1000px, 920px and 760px — plus `prefers-reduced-motion`. Everything
+else is `clamp()`.
 
-## Deploy on Vercel
+### Motion, and what happens without it
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The resting style is always the visible state. Entrance animations are
+opt-in: nothing hides itself until a `.nova-in` class lands on `<html>` after
+mount, and every reveal shares one 3.5s failsafe that forces the finished
+state if an observer never fires. Stat counters render their final value on
+the server and only count once the band is 40% in view.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+So a disabled-JS load, a print capture, a crashed bundle or
+`prefers-reduced-motion` all render the page complete rather than blank.
+
+### Accessibility
+
+One `h1`, no heading level skips, skip link as the first focusable element,
+a 2px accent focus ring at 3px offset on everything interactive, 44px
+minimum touch targets on controls, and the aria wiring the spec lists —
+`aria-expanded`/`aria-controls` on the accordion and hamburger,
+`aria-current` on the active nav link, `role="dialog"` + `aria-modal` on the
+mobile panel, `role="status"` on the newsletter response. Decorative glows,
+gradients and icons are `aria-hidden`. `pnpm lint` runs the full
+`jsx-a11y` recommended set, not just the subset `eslint-config-next` enables.
+
+## Notes on the content
+
+The palette, structure and all headline copy come from the design source.
+Where the design file named a topic but not the words — the solutions tab
+bodies and checklists, the plan feature lists, the FAQ question and answer
+wording, the testimonial quotes, and the illustrative bar values in the
+sprint chart — those were written for this build.
