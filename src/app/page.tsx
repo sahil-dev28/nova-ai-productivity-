@@ -1,4 +1,5 @@
 import { Nav } from "@/components/layout/Nav";
+import { Features } from "@/components/sections/Features";
 import { Hero } from "@/components/sections/Hero";
 import { TrustedBy } from "@/components/sections/TrustedBy";
 
@@ -9,6 +10,7 @@ export default function Home() {
       <main id="main" className="flex-1">
         <Hero />
         <TrustedBy />
+        <Features />
       </main>
     </>
   );
