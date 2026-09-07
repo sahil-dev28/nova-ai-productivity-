@@ -39,10 +39,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# local screenshots / mcp scratch
-/.playwright-mcp
-
-# next dev regenerates these agent files; keep them out of the repo
-/AGENTS.md
-/CLAUDE.md
