@@ -51,7 +51,11 @@ export function Nav() {
       )}
     >
       <Container className="flex h-full items-center justify-between gap-6">
-        <a href="#main" aria-label="NOVA, back to top" className="flex items-center">
+        <a
+          href="#main"
+          aria-label="NOVA, back to top"
+          className="inline-flex min-h-11 items-center"
+        >
           <Logo />
         </a>
 

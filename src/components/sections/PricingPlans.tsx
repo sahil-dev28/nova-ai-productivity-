@@ -37,6 +37,9 @@ export function PricingPlans() {
               setCycle(checked ? "annual" : "monthly")
             }
             aria-label="Bill annually"
+            // The switch itself is 18px tall. The pseudo-element pushes
+            // the hit area out to 44px without changing how it looks.
+            className="relative before:absolute before:inset-x-0 before:-inset-y-3.5 before:content-['']"
           />
 
           <Label
