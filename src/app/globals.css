@@ -1,26 +1,296 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+@custom-variant light (&:is(.light *));
+
+/* ------------------------------------------------------------------ *
+ * NOVA palette
+ * Dark is the resting ground, so it lives on :root and renders before
+ * any JS runs. `.light` on <html> redefines the same names and nothing
+ * else in the page has to know about it.
+ * ------------------------------------------------------------------ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #08080a;
+  --bg-2: #0c0c10;
+  --surface: rgba(255, 255, 255, 0.028);
+  --surface-2: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --text: #f2f2f5;
+  --muted: #9c9ca9;
+  --accent: #7c5cff;
+  --accent-ink: #ffffff;
+  --accent-08: rgba(124, 92, 255, 0.08);
+  --accent-18: rgba(124, 92, 255, 0.18);
+  --accent-40: rgba(124, 92, 255, 0.42);
+  --glow: rgba(124, 92, 255, 0.35);
+  --glow-2: rgba(34, 211, 238, 0.22);
+  --nav: rgba(8, 8, 10, 0.72);
+  --shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.9);
+
+  /* Fixed gradient stops — these are brand marks, not theme colors. */
+  --mark-from: var(--accent);
+  --mark-to: #22d3ee;
+  --avatar-1-from: #7c5cff;
+  --avatar-1-to: #4f2ed9;
+  --avatar-2-from: #22d3ee;
+  --avatar-2-to: #0e7490;
+  --avatar-3-from: #f472b6;
+  --avatar-3-to: #9d2e6e;
+}
+
+.light {
+  --bg: #fbfbfc;
+  --bg-2: #f4f4f7;
+  --surface: #ffffff;
+  --surface-2: #f6f6f9;
+  --border: rgba(12, 12, 20, 0.1);
+  --border-strong: rgba(12, 12, 20, 0.2);
+  --text: #101014;
+  --muted: #55555f;
+  --accent: #5b3fe8;
+  --accent-ink: #ffffff;
+  --accent-08: rgba(91, 63, 232, 0.06);
+  --accent-18: rgba(91, 63, 232, 0.14);
+  --accent-40: rgba(91, 63, 232, 0.38);
+  --glow: rgba(91, 63, 232, 0.22);
+  --glow-2: rgba(34, 211, 238, 0.18);
+  --nav: rgba(251, 251, 252, 0.75);
+  --shadow: 0 20px 50px -28px rgba(16, 16, 30, 0.28);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* -- Palette ------------------------------------------------------ */
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-08: var(--accent-08);
+  --color-accent-18: var(--accent-18);
+  --color-accent-40: var(--accent-40);
+  --color-glow: var(--glow);
+  --color-glow-2: var(--glow-2);
+  --color-nav: var(--nav);
+
+  /* -- shadcn semantics, remapped onto the NOVA palette -------------- *
+   * The primitives in components/ui keep their own markup; they just
+   * resolve to NOVA colors. Note shadcn's `accent` is a hover surface,
+   * not the brand accent, so it points at surface-2.                   */
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--text);
+  --color-popover: var(--bg-2);
+  --color-popover-foreground: var(--text);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--accent-ink);
+  --color-secondary: var(--surface-2);
+  --color-secondary-foreground: var(--text);
+  --color-muted-foreground: var(--muted);
+  --color-accent-foreground: var(--text);
+  --color-destructive: #f87171;
+  --color-border: var(--border);
+  --color-input: var(--border-strong);
+  --color-ring: var(--accent);
+
+  /* -- Canvas (section 1) ------------------------------------------- */
+  --container-content: 1200px;
+  --spacing-gutter: 24px;
+  --spacing-nav: 72px;
+
+  /* -- Vertical rhythm (section 2) ----------------------------------- */
+  --spacing-anchor: clamp(88px, 9vw, 152px);
+  --spacing-anchor-light: clamp(80px, 8.5vw, 136px);
+  --spacing-standard: clamp(72px, 8vw, 128px);
+  --spacing-light: clamp(72px, 7.5vw, 116px);
+  --spacing-band: clamp(56px, 6vw, 88px);
+  --spacing-close: clamp(80px, 9vw, 140px);
+  --spacing-hero-top: 168px;
+  --spacing-hero-bottom: clamp(56px, 6vw, 88px);
+  --spacing-pendant-bottom: clamp(64px, 7vw, 96px);
+
+  --spacing-gap-cards: clamp(40px, 4.5vw, 64px);
+  --spacing-gap-steps: clamp(48px, 5vw, 72px);
+  --spacing-gap-tabs: clamp(32px, 3.5vw, 48px);
+  --spacing-gap-blocks: clamp(64px, 7vw, 104px);
+
+  /* -- Type scale (section 3) ---------------------------------------- */
+  --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+
+  --text-h1: clamp(42px, 6.2vw, 76px);
+  --text-h1--line-height: 1.02;
+  --text-h1--letter-spacing: -0.035em;
+  --text-h1--font-weight: 700;
+
+  --text-h2: clamp(30px, 3.6vw, 46px);
+  --text-h2--line-height: 1.08;
+  --text-h2--letter-spacing: -0.03em;
+  --text-h2--font-weight: 700;
+
+  --text-h2-block: clamp(28px, 3.2vw, 40px);
+  --text-h2-block--line-height: 1.1;
+  --text-h2-block--letter-spacing: -0.03em;
+  --text-h2-block--font-weight: 700;
+
+  --text-h3: clamp(19px, 1.5vw, 21px);
+  --text-h3--line-height: 1.3;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3--font-weight: 600;
+
+  --text-lead: clamp(16px, 1.4vw, 19px);
+  --text-lead--line-height: 1.6;
+
+  --text-body: clamp(15px, 1.2vw, 17px);
+  --text-body--line-height: 1.6;
+
+  --text-eyebrow: 11.5px;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.2em;
+  --text-eyebrow--font-weight: 700;
+
+  --text-stat: clamp(38px, 4.6vw, 58px);
+  --text-stat--line-height: 1;
+  --text-stat--letter-spacing: -0.04em;
+  --text-stat--font-weight: 700;
+
+  --text-price: 44px;
+  --text-price--line-height: 1;
+  --text-price--letter-spacing: -0.04em;
+  --text-price--font-weight: 700;
+
+  /* -- Surfaces (section 4) ------------------------------------------ */
+  --radius: 16px;
+  --radius-card: 16px;
+  --radius-accordion: 14px;
+  --radius-control: 12px;
+  --radius-panel: 18px;
+
+  --shadow-panel: var(--shadow);
+  --shadow-lift: 0 26px 50px -30px var(--glow);
+
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    /* Anchors land clear of the 72px fixed nav. */
+    scroll-padding-top: 96px;
+    scroll-behavior: smooth;
+    background-color: var(--bg);
+    color-scheme: dark;
+  }
+
+  html.light {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: clamp(15px, 1.2vw, 17px);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ------------------------------------------------------------------ *
+ * Breakpoints (section 6)
+ * Tailwind's defaults are cleared so the compiled sheet can only ever
+ * contain the three queries the spec allows. Everything else is fluid
+ * via clamp() and auto-fit grids.
+ * ------------------------------------------------------------------ */
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-split: 1000px;
+  --breakpoint-navbar: 920px;
+  --breakpoint-carousel: 760px;
+}
+
+/* ------------------------------------------------------------------ *
+ * Entrance motion (section 7, degradation rule)
+ * The resting style is the visible one. Nothing here hides content
+ * until `.nova-in` lands on <html> after mount, so a disabled-JS load,
+ * a print capture or a frozen observer all render the page complete.
+ * ------------------------------------------------------------------ */
+@layer components {
+  .nova-in [data-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.8s var(--ease-out-soft),
+      transform 0.8s var(--ease-out-soft);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+
+  .nova-in [data-reveal][data-revealed="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .skip-link {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 100;
+    transform: translateY(-200%);
+    border-radius: var(--radius-control);
+    background-color: var(--accent);
+    color: var(--accent-ink);
+    padding: 12px 20px;
+    font-weight: 600;
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .nova-in [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
