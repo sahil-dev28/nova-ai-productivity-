@@ -36,8 +36,13 @@ export function MobileMenu({ activeId }: { activeId: string | null }) {
       <SheetContent
         side="top"
         showCloseButton
-        // Full-screen panel that fades and drops 8px, per section 7.
-        className="h-dvh gap-0 border-b-0 bg-bg px-gutter pt-nav pb-gutter data-open:slide-in-from-top-2 data-closed:slide-out-to-top-2"
+        // Radix does not put aria-modal on the content itself, and the
+        // spec asks for it explicitly alongside role="dialog".
+        aria-modal="true"
+        // Full-screen panel that fades and drops 8px, per section 7. The
+        // height has to be written at the same specificity as the
+        // primitive's own data-[side=top]:h-auto, or that one wins.
+        className="gap-0 border-b-0 bg-bg px-gutter pt-nav pb-gutter data-[side=top]:h-dvh data-open:slide-in-from-top-2 data-closed:slide-out-to-top-2"
       >
         <SheetTitle className="sr-only">Site menu</SheetTitle>
 
