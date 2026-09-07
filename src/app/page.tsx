@@ -1,3 +1,5 @@
+import { BackToTop } from "@/components/layout/BackToTop";
+import { Footer } from "@/components/layout/Footer";
 import { Nav } from "@/components/layout/Nav";
 import { Faq } from "@/components/sections/Faq";
 import { Features } from "@/components/sections/Features";
@@ -15,6 +17,7 @@ export default function Home() {
   return (
     <>
       <Nav />
+
       <main id="main" className="flex-1">
         <Hero />
         <TrustedBy />
@@ -28,6 +31,9 @@ export default function Home() {
         <Faq />
         <FinalCta />
       </main>
+
+      <Footer />
+      <BackToTop />
     </>
   );
 }
