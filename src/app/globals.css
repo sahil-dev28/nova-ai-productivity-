@@ -169,11 +169,19 @@
   --text-price--font-weight: 700;
 
   /* -- Surfaces (section 4) ------------------------------------------ */
+  /* Named radii for our own markup, plus the ladder the ui/ primitives
+   * already reach for — `rounded-lg` is the button/input radius there, so
+   * it has to resolve to the 12px control radius rather than a default. */
   --radius: 16px;
   --radius-card: 16px;
   --radius-accordion: 14px;
   --radius-control: 12px;
   --radius-panel: 18px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 18px;
 
   --shadow-panel: var(--shadow);
   --shadow-lift: 0 26px 50px -30px var(--glow);
@@ -292,5 +300,20 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Ambient keyframes (section 7)
+ * Decorative only — every element that uses these is aria-hidden, and
+ * the reduced-motion block above stops all of them.
+ * ------------------------------------------------------------------ */
+@keyframes nova-sweep {
+  0%,
+  70% {
+    transform: translateX(-140%);
+  }
+  100% {
+    transform: translateX(140%);
   }
 }
