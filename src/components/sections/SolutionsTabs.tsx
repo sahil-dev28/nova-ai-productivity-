@@ -12,7 +12,13 @@ import { solutions } from "@/data/solutions";
 export function SolutionsTabs() {
   return (
     <Tabs defaultValue={solutions[0].id} className="mt-gap-tabs gap-6">
-      <TabsList className="flex h-auto flex-wrap gap-2 bg-transparent p-0">
+      <TabsList
+        // The primitive pins the list to h-8 through a data-orientation
+        // variant. An unprefixed h-auto does not replace it, so the tabs
+        // overflowed their own box and the panel rode up into the second
+        // row once they wrapped. Same prefix, so this one actually wins.
+        className="flex h-auto flex-wrap gap-2 bg-transparent p-0 group-data-horizontal/tabs:h-auto"
+      >
         {solutions.map((solution) => (
           <TabsTrigger
             key={solution.id}
