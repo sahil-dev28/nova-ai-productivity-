@@ -317,3 +317,47 @@
     transform: translateX(140%);
   }
 }
+
+@keyframes nova-drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate3d(4%, -3%, 0) scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes nova-drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate3d(-5%, 4%, 0) scale(0.95);
+    opacity: 0.95;
+  }
+}
+
+@keyframes nova-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes nova-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--accent-18);
+  }
+  50% {
+    box-shadow: 0 0 0 10px transparent;
+  }
+}
