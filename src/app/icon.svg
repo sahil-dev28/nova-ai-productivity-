@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="NOVA">
+  <title>NOVA</title>
+  <!-- The same 140deg brand gradient as the Logo mark. Literal hex rather
+       than the palette tokens, because an icon file is served on its own,
+       outside the stylesheet. -->
+  <linearGradient id="mark" x1="0.179" y1="0.117" x2="0.821" y2="0.883">
+    <stop offset="0" stop-color="#7c5cff" />
+    <stop offset="1" stop-color="#22d3ee" />
+  </linearGradient>
+  <rect width="32" height="32" rx="10" fill="url(#mark)" />
+  <path d="M9 8H13L19 17.5V8H23V24H19L13 14.5V24H9Z" fill="#ffffff" />
+</svg>
