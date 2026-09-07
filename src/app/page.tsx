@@ -1,6 +1,7 @@
 import { Nav } from "@/components/layout/Nav";
 import { Features } from "@/components/sections/Features";
 import { Hero } from "@/components/sections/Hero";
+import { Product } from "@/components/sections/Product";
 import { TrustedBy } from "@/components/sections/TrustedBy";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
         <Hero />
         <TrustedBy />
         <Features />
+        <Product />
       </main>
     </>
   );

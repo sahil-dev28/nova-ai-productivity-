@@ -361,3 +361,37 @@
     box-shadow: 0 0 0 10px transparent;
   }
 }
+
+@layer components {
+  /* Chart bars ride the same reveal state as their wrapper, so they
+   * inherit the shared failsafe. Resting height is full height. */
+  .nova-in [data-reveal] [data-bar] {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.8s var(--ease-out-soft);
+    transition-delay: var(--bar-delay, 0s);
+  }
+
+  .nova-in [data-reveal][data-revealed="true"] [data-bar] {
+    transform: scaleY(1);
+  }
+
+  /* The steps connector draws left to right on the same signal. */
+  .nova-in [data-reveal] [data-connector] {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.9s var(--ease-out-soft);
+  }
+
+  .nova-in [data-reveal][data-revealed="true"] [data-connector] {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nova-in [data-reveal] [data-bar],
+  .nova-in [data-reveal] [data-connector] {
+    transform: none;
+    transition: none;
+  }
+}
