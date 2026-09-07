@@ -60,7 +60,9 @@ export function PricingPlans() {
         </span>
       </div>
 
-      <ul className="mt-gap-cards grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] items-start gap-4">
+      {/* Same min() floor as Features: the 280px track has to be allowed to
+          shrink, or the widest card bleeds into the gutter on a 320px screen. */}
+      <ul className="mt-gap-cards grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] items-start gap-4">
         {pricingPlans.map((plan) => (
           <li key={plan.id}>
             <div

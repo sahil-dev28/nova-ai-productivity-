@@ -17,7 +17,9 @@ export function Features() {
       </Reveal>
 
       <Reveal>
-        <ul className="mt-gap-cards grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
+        {/* min() keeps the track from outgrowing the column below 348px —
+            auto-fit alone would hold the floor and push the page sideways. */}
+        <ul className="mt-gap-cards grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-4">
           {features.map(({ title, description, icon: Icon }) => (
             <li key={title}>
               <Card className="h-full gap-4 border border-line ring-0 [--card-spacing:24px] transition-[transform,border-color,box-shadow] duration-300 ease-out-soft hover:-translate-y-1.5 hover:border-accent-40 hover:shadow-lift">
