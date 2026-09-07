@@ -1,4 +1,5 @@
 import { Nav } from "@/components/layout/Nav";
+import { Faq } from "@/components/sections/Faq";
 import { Features } from "@/components/sections/Features";
 import { Hero } from "@/components/sections/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks";
@@ -23,6 +24,7 @@ export default function Home() {
         <Solutions />
         <Testimonials />
         <Pricing />
+        <Faq />
       </main>
     </>
   );
