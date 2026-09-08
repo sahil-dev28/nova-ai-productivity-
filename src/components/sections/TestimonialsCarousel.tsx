@@ -41,10 +41,10 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
     Autoplay({
       delay: AUTOPLAY_DELAY,
       playOnInit: false,
-      // Hover, focus and visibility are handled below so that nothing resumes
-      // playback behind our back. stopOnInteraction stays on for one reason:
-      // with it off the plugin binds its own pointerUp handler that restarts
-      // autoplay after every drag, which would undo the halt.
+      // Every pause is decided below, so the plugin's own hover and focus
+      // handling stays off. stopOnInteraction is left on only to keep it from
+      // binding a pointerUp of its own that would race ours on the way out of
+      // a drag; resuming after one is our job.
       stopOnInteraction: true,
       stopOnMouseEnter: false,
       stopOnFocusIn: false,
@@ -62,11 +62,24 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
   );
 
   const shellRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement | null>(null);
   const [selected, setSelected] = useState(0);
 
-  // Autoplay runs only when every one of these says it may.
-  const halted = useRef(false);
-  const engaged = useRef(false);
+  // One node, two refs: Embla drives the carousel from it and the hover gate
+  // below listens on it.
+  const setViewport = useCallback(
+    (node: HTMLDivElement | null) => {
+      viewportRef.current = node;
+      emblaRef(node);
+    },
+    [emblaRef],
+  );
+
+  // Autoplay runs unless one of these says otherwise. Nothing latches on the
+  // way in: reading a card or dragging it pauses the timer, and it picks up
+  // again the moment the reader is done.
+  const reading = useRef(false);
+  const keyboardFocus = useRef(false);
   const onScreen = useRef(true);
 
   const sync = useCallback(() => {
@@ -77,61 +90,82 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    if (reduced || halted.current || engaged.current || !onScreen.current) {
+    if (reduced || reading.current || keyboardFocus.current || !onScreen.current) {
       plugin.stop();
     } else {
       plugin.play();
     }
   }, [emblaApi]);
 
-  const halt = useCallback(() => {
-    halted.current = true;
-    sync();
-  }, [sync]);
-
   // The arrows wrap the same way the timer does, sweeping across the track
-  // instead of dead-ending at either edge.
+  // instead of dead-ending at either edge. Driving one restarts the countdown
+  // rather than ending it, so a reader who steps forward by hand still gets a
+  // full interval on the card they picked before the timer takes over again.
   const goPrev = useCallback(() => {
-    halt();
     if (!emblaApi) return;
     if (emblaApi.canScrollPrev()) emblaApi.scrollPrev();
     else emblaApi.scrollTo(emblaApi.scrollSnapList().length - 1);
-  }, [emblaApi, halt]);
+    sync();
+  }, [emblaApi, sync]);
 
   const goNext = useCallback(() => {
-    halt();
     if (!emblaApi) return;
     if (emblaApi.canScrollNext()) emblaApi.scrollNext();
     else emblaApi.scrollTo(0);
-  }, [emblaApi, halt]);
+    sync();
+  }, [emblaApi, sync]);
 
   useEffect(() => {
     const shell = shellRef.current;
-    if (!emblaApi || !shell) return;
+    const viewport = viewportRef.current;
+    if (!emblaApi || !shell || !viewport) return;
 
     const readSelected = () => setSelected(emblaApi.selectedScrollSnap());
 
     readSelected();
 
+    // The plugin stops the timer on pointerDown; picking it back up once the
+    // drag is over is left to us, through the same gate as everything else.
     emblaApi
       .on("select", readSelected)
       .on("reInit", readSelected)
-      .on("pointerDown", halt);
+      .on("pointerUp", sync);
 
-    const engage = () => {
-      engaged.current = true;
+    // Hovering the quote pauses it so it can be read. The arrows sit outside
+    // the viewport on purpose: resting the pointer on them after a click must
+    // not hold the carousel still.
+    const startReading = () => {
+      reading.current = true;
       sync();
     };
 
-    const release = () => {
-      engaged.current = false;
+    const stopReading = () => {
+      reading.current = false;
       sync();
     };
 
-    shell.addEventListener("mouseenter", engage);
-    shell.addEventListener("mouseleave", release);
-    shell.addEventListener("focusin", engage);
-    shell.addEventListener("focusout", release);
+    viewport.addEventListener("mouseenter", startReading);
+    viewport.addEventListener("mouseleave", stopReading);
+
+    // Only a keyboard landing pauses. A pointer press may focus the arrow as
+    // well, and pausing on that would stop the carousel for the very gesture
+    // meant to drive it. Keyboard users still get the pause that lets them
+    // read at their own speed.
+    const focusIn = (event: FocusEvent) => {
+      const target = event.target;
+      if (target instanceof Element && target.matches(":focus-visible")) {
+        keyboardFocus.current = true;
+        sync();
+      }
+    };
+
+    const focusOut = () => {
+      keyboardFocus.current = false;
+      sync();
+    };
+
+    shell.addEventListener("focusin", focusIn);
+    shell.addEventListener("focusout", focusOut);
 
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     motion.addEventListener("change", sync);
@@ -151,17 +185,18 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
       emblaApi
         .off("select", readSelected)
         .off("reInit", readSelected)
-        .off("pointerDown", halt);
+        .off("pointerUp", sync);
 
-      shell.removeEventListener("mouseenter", engage);
-      shell.removeEventListener("mouseleave", release);
-      shell.removeEventListener("focusin", engage);
-      shell.removeEventListener("focusout", release);
+      viewport.removeEventListener("mouseenter", startReading);
+      viewport.removeEventListener("mouseleave", stopReading);
+
+      shell.removeEventListener("focusin", focusIn);
+      shell.removeEventListener("focusout", focusOut);
 
       motion.removeEventListener("change", sync);
       observer.disconnect();
     };
-  }, [emblaApi, halt, sync]);
+  }, [emblaApi, sync]);
 
   return (
     <div
@@ -170,7 +205,7 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
       aria-roledescription="carousel"
       aria-label="Customer testimonials"
     >
-      <div ref={emblaRef} className="overflow-hidden">
+      <div ref={setViewport} className="overflow-hidden">
         <ul className="-ml-8 flex items-stretch">
           {items.map((person) => (
             <li
