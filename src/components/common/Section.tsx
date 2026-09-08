@@ -25,6 +25,7 @@ type SectionProps = {
   bleed?: boolean;
   id?: string;
   className?: string;
+  "aria-label"?: string;
   "aria-labelledby"?: string;
 };
 
