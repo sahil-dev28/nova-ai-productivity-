@@ -51,10 +51,15 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
     }),
   );
 
-  // loop carries the last testimonial back round to the first on its own.
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" }, [
-    autoplay,
-  ]);
+  // Deliberately not looping. Without loop the reset off the last testimonial
+  // travels back across every card that was already shown rather than
+  // seam-jumping to the first, and because that rewind covers the whole track
+  // in one scroll it reads as a quick sweep right. Autoplay does it for us:
+  // the plugin falls back to scrollTo(0) once canScrollNext goes false.
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: false, align: "start", duration: 30 },
+    [autoplay],
+  );
 
   const shellRef = useRef<HTMLDivElement>(null);
   const [selected, setSelected] = useState(0);
@@ -84,14 +89,20 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
     sync();
   }, [sync]);
 
+  // The arrows wrap the same way the timer does, sweeping across the track
+  // instead of dead-ending at either edge.
   const goPrev = useCallback(() => {
     halt();
-    emblaApi?.scrollPrev();
+    if (!emblaApi) return;
+    if (emblaApi.canScrollPrev()) emblaApi.scrollPrev();
+    else emblaApi.scrollTo(emblaApi.scrollSnapList().length - 1);
   }, [emblaApi, halt]);
 
   const goNext = useCallback(() => {
     halt();
-    emblaApi?.scrollNext();
+    if (!emblaApi) return;
+    if (emblaApi.canScrollNext()) emblaApi.scrollNext();
+    else emblaApi.scrollTo(0);
   }, [emblaApi, halt]);
 
   useEffect(() => {
