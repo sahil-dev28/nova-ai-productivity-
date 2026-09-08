@@ -1,4 +1,5 @@
 import { SparklesIcon } from "lucide-react";
+import { Ambient } from "@/components/common/Ambient";
 
 const ROWS = [
   { title: "Migrate billing webhooks", meta: "Due Thu", tone: "accent" },
@@ -9,10 +10,7 @@ const ROWS = [
 
 export function HeroMockup() {
   return (
-    <div
-      aria-hidden="true"
-      className="relative animate-[nova-float_9s_ease-in-out_infinite]"
-    >
+    <Ambient className="relative animate-[nova-float_9s_ease-in-out_infinite]">
       <div className="rounded-panel border border-line bg-bg-2 shadow-panel">
         <div className="flex items-center gap-2 border-b border-line px-5 py-4">
           <span className="size-2.5 rounded-full bg-line-strong" />
@@ -53,6 +51,6 @@ export function HeroMockup() {
           Agent closed 6 tasks
         </span>
       </div>
-    </div>
+    </Ambient>
   );
 }

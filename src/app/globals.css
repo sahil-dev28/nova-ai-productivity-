@@ -282,6 +282,11 @@
 }
 
 /* Ambient keyframes */
+[data-ambient="idle"],
+[data-ambient="idle"] * {
+  animation-play-state: paused;
+}
+
 @keyframes nova-sweep {
   0%,
   70% {
