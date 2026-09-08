@@ -205,7 +205,10 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
       aria-roledescription="carousel"
       aria-label="Customer testimonials"
     >
-      <div ref={setViewport} className="overflow-hidden">
+      <div
+        ref={setViewport}
+        className="cursor-grab overflow-hidden active:cursor-grabbing"
+      >
         <ul className="-ml-8 flex items-stretch">
           {items.map((person) => (
             <li
