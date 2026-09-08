@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Reveal } from "@/components/common/Reveal";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
@@ -20,7 +21,7 @@ export function Testimonials() {
         />
       </Reveal>
 
-      <Reveal>
+      <Reveal stagger>
         <div
           role="region"
           aria-label="Customer testimonials"
@@ -28,9 +29,11 @@ export function Testimonials() {
           className="mt-gap-cards max-carousel:snap-x max-carousel:snap-mandatory max-carousel:overflow-x-auto max-carousel:pb-2"
         >
           <ul className="grid grid-cols-3 gap-4 max-carousel:flex">
-            {testimonials.map((person) => (
+            {testimonials.map((person, index) => (
               <li
                 key={person.id}
+                data-stagger=""
+                style={{ "--stagger-delay": `${index * 0.08}s` } as CSSProperties}
                 className="max-carousel:w-[84%] max-carousel:shrink-0 max-carousel:snap-start"
               >
                 <figure className="flex h-full flex-col rounded-card border border-line bg-surface p-7 transition-[transform,border-color,box-shadow] duration-300 ease-out-soft hover:-translate-y-1.5 hover:border-accent-40 hover:shadow-lift">

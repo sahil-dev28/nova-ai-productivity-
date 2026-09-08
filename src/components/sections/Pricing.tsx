@@ -14,9 +14,9 @@ export function Pricing() {
           title={pricingIntro.title}
           align="center"
         />
-
-        <PricingPlans />
       </Reveal>
+
+      <PricingPlans />
     </Section>
   );
 }

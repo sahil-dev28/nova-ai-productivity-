@@ -24,11 +24,18 @@ function register(reveal: () => void) {
 type RevealProps = {
   children: ReactNode;
   delay?: number;
+  stagger?: boolean;
   className?: string;
   style?: CSSProperties;
 };
 
-export function Reveal({ children, delay = 0, className, style }: RevealProps) {
+export function Reveal({
+  children,
+  delay = 0,
+  stagger = false,
+  className,
+  style,
+}: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [revealed, setRevealed] = useState(false);
 
@@ -59,7 +66,7 @@ export function Reveal({ children, delay = 0, className, style }: RevealProps) {
   return (
     <div
       ref={ref}
-      data-reveal=""
+      data-reveal={stagger ? "group" : ""}
       data-revealed={revealed}
       className={className}
       style={{ ...style, "--reveal-delay": `${delay}s` } as CSSProperties}

@@ -229,7 +229,7 @@
 
 /* Entrance motion */
 @layer components {
-  .nova-in [data-reveal] {
+  .nova-in [data-reveal]:not([data-reveal="group"]) {
     opacity: 0;
     transform: translateY(26px);
     transition:
@@ -239,6 +239,20 @@
   }
 
   .nova-in [data-reveal][data-revealed="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .nova-in [data-reveal="group"] [data-stagger] {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.7s var(--ease-out-soft),
+      transform 0.7s var(--ease-out-soft);
+    transition-delay: var(--stagger-delay, 0s);
+  }
+
+  .nova-in [data-reveal="group"][data-revealed="true"] [data-stagger] {
     opacity: 1;
     transform: none;
   }
@@ -266,7 +280,8 @@
     scroll-behavior: auto;
   }
 
-  .nova-in [data-reveal] {
+  .nova-in [data-reveal],
+  .nova-in [data-reveal="group"] [data-stagger] {
     opacity: 1;
     transform: none;
     transition: none;

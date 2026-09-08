@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Reveal } from "@/components/common/Reveal";
 import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
@@ -16,10 +17,14 @@ export function Features() {
         />
       </Reveal>
 
-      <Reveal>
+      <Reveal stagger>
         <ul className="mt-gap-cards grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-4">
-          {features.map(({ title, description, icon: Icon }) => (
-            <li key={title}>
+          {features.map(({ title, description, icon: Icon }, index) => (
+            <li
+              key={title}
+              data-stagger=""
+              style={{ "--stagger-delay": `${index * 0.06}s` } as CSSProperties}
+            >
               <Card className="h-full gap-4 border border-line ring-0 [--card-spacing:24px] transition-[transform,border-color,box-shadow] duration-300 ease-out-soft hover:-translate-y-1.5 hover:border-accent-40 hover:shadow-lift">
                 <div className="px-(--card-spacing)">
                   <span className="inline-flex size-11 items-center justify-center rounded-control bg-accent-08">
