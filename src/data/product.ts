@@ -1,6 +1,5 @@
 export type ChartBar = {
   label: string;
-  /** Percent of the plot height. Illustrative — the panel is a mock. */
   value: number;
 };
 

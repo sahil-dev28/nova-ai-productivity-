@@ -9,9 +9,7 @@ import { navCta, navLinks } from "@/data/navLinks";
 import { cn } from "@/lib/utils";
 import { MobileMenu } from "./MobileMenu";
 
-/** Past this much scroll the bar stops being transparent. */
 const SOLID_AFTER = 12;
-/** A section counts as active once its top is within this of the viewport. */
 const SPY_OFFSET = 140;
 
 export function Nav() {
@@ -26,7 +24,6 @@ export function Nav() {
     const onScroll = () => {
       setSolid(window.scrollY > SOLID_AFTER);
 
-      // Topmost section that has already passed the offset wins.
       const current = sections.reduce<string | null>((found, section) => {
         return section.getBoundingClientRect().top <= SPY_OFFSET
           ? section.id

@@ -2,11 +2,6 @@
 
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
-/**
- * Every reveal on the page shares one 3.5s failsafe. If the observer
- * never fires — a frozen tab, a bad rootMargin, an old browser — the
- * timeout forces the finished state rather than leaving content hidden.
- */
 const FAILSAFE_MS = 3500;
 
 const pending = new Set<() => void>();
@@ -28,7 +23,6 @@ function register(reveal: () => void) {
 
 type RevealProps = {
   children: ReactNode;
-  /** Seconds to hold before this element starts, for staggered groups. */
   delay?: number;
   className?: string;
   style?: CSSProperties;

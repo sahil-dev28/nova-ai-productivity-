@@ -12,12 +12,6 @@ import {
 } from "@/components/ui/sheet";
 import { navCta, navLinks } from "@/data/navLinks";
 
-/**
- * Radix's Dialog underneath Sheet already gives us role="dialog",
- * aria-modal, aria-expanded/aria-controls on the trigger, Escape to
- * close and the body scroll lock — all four are spec requirements, so
- * the primitive is doing real work here rather than decorating.
- */
 export function MobileMenu({ activeId }: { activeId: string | null }) {
   const [open, setOpen] = useState(false);
 
@@ -36,12 +30,7 @@ export function MobileMenu({ activeId }: { activeId: string | null }) {
       <SheetContent
         side="top"
         showCloseButton
-        // Radix does not put aria-modal on the content itself, and the
-        // spec asks for it explicitly alongside role="dialog".
         aria-modal="true"
-        // Full-screen panel that fades and drops 8px, per section 7. The
-        // height has to be written at the same specificity as the
-        // primitive's own data-[side=top]:h-auto, or that one wins.
         className="gap-0 border-b-0 bg-bg px-gutter pt-nav pb-gutter data-[side=top]:h-dvh data-open:slide-in-from-top-2 data-closed:slide-out-to-top-2"
       >
         <SheetTitle className="sr-only">Site menu</SheetTitle>

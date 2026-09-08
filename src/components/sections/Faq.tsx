@@ -38,9 +38,6 @@ export function Faq() {
         </Reveal>
 
         <Reveal>
-          {/* type="single" collapsible is the spec's one-open-at-a-time.
-              Radix supplies aria-expanded and aria-controls on each
-              trigger and the panel ids they point at. */}
           <Accordion type="single" collapsible className="gap-3">
             {faqs.map((faq) => (
               <AccordionItem
@@ -51,9 +48,6 @@ export function Faq() {
                 <AccordionTrigger
                   className={[
                     "px-5 py-5 text-left text-[17px] font-semibold text-ink hover:no-underline",
-                    // shadcn swaps a down chevron for an up one. The spec
-                    // wants a single chevron that turns, so the second is
-                    // dropped and the first is pinned visible and rotated.
                     "[&_[data-slot=accordion-trigger-icon]]:transition-transform [&_[data-slot=accordion-trigger-icon]]:duration-300",
                     "[&_[data-slot=accordion-trigger-icon]:last-of-type]:hidden!",
                     "[&_[data-slot=accordion-trigger-icon]:first-of-type]:block!",

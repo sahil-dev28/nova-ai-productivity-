@@ -37,8 +37,6 @@ export function PricingPlans() {
               setCycle(checked ? "annual" : "monthly")
             }
             aria-label="Bill annually"
-            // The switch itself is 18px tall. The pseudo-element pushes
-            // the hit area out to 44px without changing how it looks.
             className="relative before:absolute before:inset-x-0 before:-inset-y-3.5 before:content-['']"
           />
 
@@ -53,15 +51,11 @@ export function PricingPlans() {
           </Label>
         </div>
 
-        {/* Deliberately outside the control — it is a claim about the
-            annual option, not a third thing you can switch to. */}
         <span className="rounded-full border border-accent-40 bg-accent-08 px-3 py-1.5 text-[12.5px] font-semibold text-accent">
           {pricingIntro.saveBadge}
         </span>
       </div>
 
-      {/* Same min() floor as Features: the 280px track has to be allowed to
-          shrink, or the widest card bleeds into the gutter on a 320px screen. */}
       <ul className="mt-gap-cards grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] items-start gap-4">
         {pricingPlans.map((plan) => (
           <li key={plan.id}>

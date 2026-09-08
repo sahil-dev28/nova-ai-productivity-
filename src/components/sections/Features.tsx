@@ -17,8 +17,6 @@ export function Features() {
       </Reveal>
 
       <Reveal>
-        {/* min() keeps the track from outgrowing the column below 348px —
-            auto-fit alone would hold the floor and push the page sideways. */}
         <ul className="mt-gap-cards grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-4">
           {features.map(({ title, description, icon: Icon }) => (
             <li key={title}>

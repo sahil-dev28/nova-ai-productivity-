@@ -6,7 +6,6 @@ type SectionHeadingProps = {
   eyebrow?: string;
   title: ReactNode;
   supporting?: ReactNode;
-  /** Heading id so the parent <section> can point aria-labelledby at it. */
   id?: string;
   align?: "left" | "center";
   className?: string;

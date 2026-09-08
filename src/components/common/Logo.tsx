@@ -1,10 +1,5 @@
 import { cn } from "@/lib/utils";
 
-/**
- * The mark is a fixed brand gradient rather than a theme color, so it
- * reads the same in both themes. The sweep is decorative and hidden
- * from assistive tech.
- */
 export function Logo({ className }: { className?: string }) {
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>

@@ -13,8 +13,6 @@ export function Product() {
         {productBlocks.map((block, index) => (
           <Reveal key={block.id}>
             <div className="grid grid-cols-2 items-center gap-x-16 gap-y-10 max-split:grid-cols-1">
-              {/* Text always renders first in the DOM, so the stacked
-                  order stays copy-then-visual at every width. */}
               <div className={cn(index % 2 === 1 && "split:order-2")}>
                 <Eyebrow>{block.eyebrow}</Eyebrow>
 

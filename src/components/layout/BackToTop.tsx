@@ -4,7 +4,6 @@ import { ArrowUpIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-/** Far enough down that the button is not competing with the hero. */
 const SHOW_AFTER = 700;
 
 export function BackToTop() {
@@ -22,8 +21,6 @@ export function BackToTop() {
   return (
     <button
       type="button"
-      // Hidden from the tab order as well as from view while it is up,
-      // so keyboard users do not land on a button they cannot see.
       aria-hidden={!visible}
       tabIndex={visible ? 0 : -1}
       onClick={() => window.scrollTo({ top: 0 })}

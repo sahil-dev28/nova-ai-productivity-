@@ -3,10 +3,6 @@ import { Container } from "@/components/common/Container";
 import { Reveal } from "@/components/common/Reveal";
 import { trustedByLabel, trustedByLogos } from "@/data/trustedBy";
 
-/**
- * Hangs off the hero rather than starting a new block — no top padding,
- * so the first real gap on the page arrives before Features.
- */
 export function TrustedBy() {
   return (
     <section aria-label={trustedByLabel} className="pt-0 pb-pendant-bottom">

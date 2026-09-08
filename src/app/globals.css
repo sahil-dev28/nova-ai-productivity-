@@ -5,12 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 @custom-variant light (&:is(.light *));
 
-/* ------------------------------------------------------------------ *
- * NOVA palette
- * Dark is the resting ground, so it lives on :root and renders before
- * any JS runs. `.light` on <html> redefines the same names and nothing
- * else in the page has to know about it.
- * ------------------------------------------------------------------ */
+/* Palette */
 
 :root {
   --bg: #08080a;
@@ -31,7 +26,7 @@
   --nav: rgba(8, 8, 10, 0.72);
   --shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.9);
 
-  /* Fixed gradient stops — these are brand marks, not theme colors. */
+  /* Brand gradients */
   --mark-from: var(--accent);
   --mark-to: #22d3ee;
   --avatar-1-from: #7c5cff;
@@ -63,7 +58,7 @@
 }
 
 @theme inline {
-  /* -- Palette ------------------------------------------------------ */
+  /* Palette */
   --color-bg: var(--bg);
   --color-bg-2: var(--bg-2);
   --color-surface: var(--surface);
@@ -81,10 +76,7 @@
   --color-glow-2: var(--glow-2);
   --color-nav: var(--nav);
 
-  /* -- shadcn semantics, remapped onto the NOVA palette -------------- *
-   * The primitives in components/ui keep their own markup; they just
-   * resolve to NOVA colors. Note shadcn's `accent` is a hover surface,
-   * not the brand accent, so it points at surface-2.                   */
+  /* shadcn semantics, remapped onto the NOVA palette */
   --color-background: var(--bg);
   --color-foreground: var(--text);
   --color-card: var(--surface);
@@ -102,12 +94,12 @@
   --color-input: var(--border-strong);
   --color-ring: var(--accent);
 
-  /* -- Canvas (section 1) ------------------------------------------- */
+  /* Canvas */
   --container-content: 1200px;
   --spacing-gutter: 24px;
   --spacing-nav: 72px;
 
-  /* -- Vertical rhythm (section 2) ----------------------------------- */
+  /* Vertical rhythm */
   --spacing-anchor: clamp(88px, 9vw, 152px);
   --spacing-anchor-light: clamp(80px, 8.5vw, 136px);
   --spacing-standard: clamp(72px, 8vw, 128px);
@@ -123,7 +115,7 @@
   --spacing-gap-tabs: clamp(32px, 3.5vw, 48px);
   --spacing-gap-blocks: clamp(64px, 7vw, 104px);
 
-  /* -- Type scale (section 3) ---------------------------------------- */
+  /* Type scale */
   --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
 
@@ -168,10 +160,7 @@
   --text-price--letter-spacing: -0.04em;
   --text-price--font-weight: 700;
 
-  /* -- Surfaces (section 4) ------------------------------------------ */
-  /* Named radii for our own markup, plus the ladder the ui/ primitives
-   * already reach for — `rounded-lg` is the button/input radius there, so
-   * it has to resolve to the 12px control radius rather than a default. */
+  /* Surfaces */
   --radius: 16px;
   --radius-card: 16px;
   --radius-accordion: 14px;
@@ -195,7 +184,6 @@
   }
 
   html {
-    /* Anchors land clear of the 72px fixed nav. */
     scroll-padding-top: 96px;
     scroll-behavior: smooth;
     background-color: var(--bg);
@@ -231,12 +219,7 @@
   }
 }
 
-/* ------------------------------------------------------------------ *
- * Breakpoints (section 6)
- * Tailwind's defaults are cleared so the compiled sheet can only ever
- * contain the three queries the spec allows. Everything else is fluid
- * via clamp() and auto-fit grids.
- * ------------------------------------------------------------------ */
+/* Breakpoints */
 @theme {
   --breakpoint-*: initial;
   --breakpoint-split: 1000px;
@@ -244,12 +227,7 @@
   --breakpoint-carousel: 760px;
 }
 
-/* ------------------------------------------------------------------ *
- * Entrance motion (section 7, degradation rule)
- * The resting style is the visible one. Nothing here hides content
- * until `.nova-in` lands on <html> after mount, so a disabled-JS load,
- * a print capture or a frozen observer all render the page complete.
- * ------------------------------------------------------------------ */
+/* Entrance motion */
 @layer components {
   .nova-in [data-reveal] {
     opacity: 0;
@@ -303,11 +281,7 @@
   }
 }
 
-/* ------------------------------------------------------------------ *
- * Ambient keyframes (section 7)
- * Decorative only — every element that uses these is aria-hidden, and
- * the reduced-motion block above stops all of them.
- * ------------------------------------------------------------------ */
+/* Ambient keyframes */
 @keyframes nova-sweep {
   0%,
   70% {
@@ -363,8 +337,6 @@
 }
 
 @layer components {
-  /* Chart bars ride the same reveal state as their wrapper, so they
-   * inherit the shared failsafe. Resting height is full height. */
   .nova-in [data-reveal] [data-bar] {
     transform: scaleY(0);
     transform-origin: bottom;
@@ -376,7 +348,6 @@
     transform: scaleY(1);
   }
 
-  /* The steps connector draws left to right on the same signal. */
   .nova-in [data-reveal] [data-connector] {
     transform: scaleX(0);
     transform-origin: left;

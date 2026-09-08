@@ -8,7 +8,6 @@ import { HeroMockup } from "./HeroMockup";
 export function Hero() {
   return (
     <section className="relative overflow-hidden pt-hero-top pb-hero-bottom">
-      {/* Two drifting glow fields on offset cycles. Decorative. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute -top-40 -left-32 size-[620px] animate-[nova-drift-a_26s_ease-in-out_infinite] rounded-full bg-[radial-gradient(circle,var(--glow),transparent_70%)] blur-3xl" />
         <div className="absolute -top-24 right-[-12rem] size-[520px] animate-[nova-drift-b_19s_ease-in-out_infinite] rounded-full bg-[radial-gradient(circle,var(--glow-2),transparent_70%)] blur-3xl" />

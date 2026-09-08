@@ -5,7 +5,6 @@ export type Testimonial = {
   role: string;
   company: string;
   initials: string;
-  /** Which of the three fixed avatar gradients this person uses. */
   avatar: "one" | "two" | "three";
 };
 

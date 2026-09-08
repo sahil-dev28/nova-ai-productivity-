@@ -7,11 +7,6 @@ const ROWS = [
   { title: "Triage support backlog", meta: "Automated", tone: "accent" },
 ] as const;
 
-/**
- * Purely decorative product shot. It carries no information the copy
- * does not already give, so the whole thing is hidden from assistive
- * tech rather than described.
- */
 export function HeroMockup() {
   return (
     <div

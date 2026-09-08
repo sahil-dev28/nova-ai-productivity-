@@ -5,7 +5,6 @@ export type PricingPlan = {
   name: string;
   description: string;
   price: Record<BillingCycle, string>;
-  /** Swapped alongside the price when the toggle flips. */
   note: Record<BillingCycle, string>;
   cta: string;
   features: string[];

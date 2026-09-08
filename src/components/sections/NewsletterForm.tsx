@@ -60,9 +60,6 @@ export function NewsletterForm() {
         </Button>
       </div>
 
-      {/* Always in the DOM so the live region exists before it has
-          anything to say — announcing into a node that was just
-          inserted is unreliable. */}
       <p
         id="newsletter-status"
         role="status"

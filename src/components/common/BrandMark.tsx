@@ -1,20 +1,11 @@
 import type { ReactNode } from "react";
 import type { BrandKey } from "@/data/trustedBy";
 
-/**
- * NOVA's customers are invented, so their marks are drawn here rather than
- * pulled from a brand asset. One silhouette each, all built on the same 24px
- * grid and the same optical weight so the row reads as one set. They fill with
- * currentColor, which is what makes them fade and lift with their wordmark.
- */
 const MARKS: Record<BrandKey, ReactNode> = {
-  // Two chevrons, for a bird mid-glide.
   halcyon: (
     <path d="M12 4 21.5 13.2H17.2L12 8.2 6.8 13.2H2.5ZM12 12.6 19.5 19.9H15.2L12 16.8 8.8 19.9H4.5Z" />
   ),
-  // A compass needle, notched at the tail.
   northwind: <path d="M12 2 20 21.5 12 17 4 21.5Z" />,
-  // Three bars stepping up, on one baseline.
   cadence: (
     <>
       <rect x="3.5" y="13" width="4" height="7.5" rx="2" />
@@ -22,7 +13,6 @@ const MARKS: Record<BrandKey, ReactNode> = {
       <rect x="16.5" y="3.5" width="4" height="17" rx="2" />
     </>
   ),
-  // A ring cut by its own meridian.
   meridian: (
     <>
       <circle
@@ -36,11 +26,9 @@ const MARKS: Record<BrandKey, ReactNode> = {
       <rect x="2.1" y="10.7" width="19.8" height="2.6" />
     </>
   ),
-  // A triangle holding a triangle — the shape proves itself.
   axiom: (
     <path fillRule="evenodd" d="M12 2.5 22 20.5H2ZM12 10.2 16.4 17.8H7.6Z" />
   ),
-  // A four-point spark.
   lumen: (
     <path d="M12 1.8c1.1 5.9 4.3 9.1 10.2 10.2-5.9 1.1-9.1 4.3-10.2 10.2-1.1-5.9-4.3-9.1-10.2-10.2C7.7 10.9 10.9 7.7 12 1.8Z" />
   ),

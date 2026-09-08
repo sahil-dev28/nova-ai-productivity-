@@ -16,9 +16,6 @@ export function HowItWorks() {
 
       <Reveal>
         <div className="relative mt-gap-steps">
-          {/* Hairline threading the three markers, drawn left to right.
-              It sits at the markers' vertical centre and is dropped when
-              the row stacks, where it would point at nothing. */}
           <span
             aria-hidden="true"
             data-connector=""

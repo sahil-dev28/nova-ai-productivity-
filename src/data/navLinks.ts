@@ -1,6 +1,5 @@
 export type NavLink = {
   label: string;
-  /** Id of the section this link scrolls to, also used for the scrollspy. */
   id: string;
 };
 

@@ -7,7 +7,6 @@ export type BrandKey =
   | "lumen";
 
 export type TrustedLogo = {
-  /** Selects the drawn mark in BrandMark. */
   key: BrandKey;
   name: string;
 };

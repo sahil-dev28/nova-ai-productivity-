@@ -1,5 +1,4 @@
 export type Stat = {
-  /** Rendered as-is on the server and whenever the counter cannot run. */
   display: string;
   value: number;
   decimals: number;

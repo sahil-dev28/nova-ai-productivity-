@@ -3,7 +3,6 @@ import { Section } from "@/components/common/Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { testimonials, testimonialsIntro } from "@/data/testimonials";
 
-/** Fixed brand gradients, so they are looked up rather than interpolated. */
 const AVATARS = {
   one: "bg-[linear-gradient(140deg,var(--avatar-1-from),var(--avatar-1-to))]",
   two: "bg-[linear-gradient(140deg,var(--avatar-2-from),var(--avatar-2-to))]",
@@ -26,9 +25,6 @@ export function Testimonials() {
       </Reveal>
 
       <Reveal>
-        {/* Below 760px this becomes a scroll-snap carousel. That is a
-            CSS behaviour end to end, so the section stays a server
-            component — there is no state to hold. */}
         <ul className="mt-gap-cards grid grid-cols-3 gap-4 max-carousel:flex max-carousel:snap-x max-carousel:snap-mandatory max-carousel:overflow-x-auto max-carousel:pb-2">
           {testimonials.map((person) => (
             <li

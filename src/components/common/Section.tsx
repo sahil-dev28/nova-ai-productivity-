@@ -2,10 +2,6 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Container } from "./Container";
 
-/**
- * Padding is tiered by a section's weight rather than applied flat, so
- * the page reads with a pulse instead of a metronome.
- */
 const TIERS = {
   anchor: "py-anchor",
   anchorLight: "py-anchor-light",
@@ -26,7 +22,6 @@ type SectionProps = {
   children: ReactNode;
   tier: keyof typeof TIERS;
   ground?: keyof typeof GROUNDS;
-  /** Omit the inner Container when a section needs to bleed full width. */
   bleed?: boolean;
   id?: string;
   className?: string;

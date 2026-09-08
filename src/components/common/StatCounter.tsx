@@ -4,15 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import CountUp from "react-countup";
 import type { Stat } from "@/data/stats";
 
-/** Counters run at threshold .4 rather than the .08 used for reveals. */
 const THRESHOLD = 0.4;
 
-/**
- * The finished number is what renders on the server and what stays on
- * screen if the observer never fires. Counting is the enhancement, not
- * the source of the value — so no JS, reduced motion or a frozen clock
- * all leave a correct figure on the page.
- */
 export function StatCounter({ stat }: { stat: Stat }) {
   const ref = useRef<HTMLSpanElement>(null);
   const [counting, setCounting] = useState(false);

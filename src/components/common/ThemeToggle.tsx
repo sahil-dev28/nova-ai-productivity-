@@ -4,12 +4,6 @@ import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
-/**
- * Flips `.light` on <html>. Which icon and label show is decided by the
- * `light:` variant rather than by React state — that keeps the server
- * and client markup identical, so there is no mounted-flag flicker and
- * no hydration mismatch to suppress.
- */
 export function ThemeToggle({ className }: { className?: string }) {
   const { resolvedTheme, setTheme } = useTheme();
 
