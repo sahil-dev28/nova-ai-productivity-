@@ -160,9 +160,12 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
       aria-label="Customer testimonials"
     >
       <div ref={emblaRef} className="overflow-hidden">
-        <ul className="flex items-stretch">
+        <ul className="-ml-8 flex items-stretch">
           {items.map((person) => (
-            <li key={person.id} className="min-w-0 shrink-0 grow-0 basis-full">
+            <li
+              key={person.id}
+              className="min-w-0 shrink-0 grow-0 basis-full pl-8"
+            >
               <figure className="flex h-full flex-col justify-between rounded-card border border-line bg-surface p-8 split:min-h-[356px] split:p-11">
                 <blockquote className="text-lead text-ink">
                   <p>&ldquo;{person.quote}&rdquo;</p>
@@ -177,10 +180,10 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
                   </span>
 
                   <span>
-                    <span className="block text-[17px] font-semibold text-ink">
+                    <span className="block text-[20px] font-semibold text-ink">
                       {person.name}
                     </span>
-                    <span className="mt-1 block text-eyebrow uppercase text-muted">
+                    <span className="mt-1.5 block text-[13px] font-semibold uppercase tracking-[0.14em] text-muted">
                       {person.role}, {person.company}
                     </span>
                   </span>
