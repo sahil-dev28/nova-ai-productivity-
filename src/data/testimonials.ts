@@ -5,11 +5,12 @@ export type Testimonial = {
   role: string;
   company: string;
   initials: string;
-  avatar: "one" | "two" | "three";
+  avatar: "one" | "two" | "three" | "four";
 };
 
 export const testimonialsIntro = {
   title: "Teams stopped managing the tool",
+  supporting: "Hear it first hand, from the people who run their week on NOVA.",
 } as const;
 
 export const testimonials: Testimonial[] = [
@@ -42,5 +43,15 @@ export const testimonials: Testimonial[] = [
     company: "Cadence",
     initials: "SL",
     avatar: "three",
+  },
+  {
+    id: "dele",
+    quote:
+      "Our weekly ops review used to open with twenty minutes of reconciling dashboards. The numbers are settled before anyone joins the call now.",
+    name: "Dele Okonkwo",
+    role: "Head of Operations",
+    company: "Fernbank",
+    initials: "DO",
+    avatar: "four",
   },
 ];
