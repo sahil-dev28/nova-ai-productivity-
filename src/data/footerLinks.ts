@@ -1,6 +1,6 @@
 export type FooterLink = {
   label: string;
-  href: string;
+  href?: string;
 };
 
 export type FooterColumn = {
@@ -13,7 +13,7 @@ export type SocialKey = "x" | "linkedin" | "github" | "youtube";
 export type Social = {
   key: SocialKey;
   label: string;
-  href: string;
+  href?: string;
 };
 
 export const footerBrand = {
@@ -29,7 +29,7 @@ export const footerColumns: FooterColumn[] = [
       { label: "Features", href: "#features" },
       { label: "Automations", href: "#product" },
       { label: "Integrations", href: "#product" },
-      { label: "Changelog", href: "#" },
+      { label: "Changelog" },
     ],
   },
   {
@@ -44,26 +44,26 @@ export const footerColumns: FooterColumn[] = [
   {
     title: "Company",
     links: [
-      { label: "About", href: "#" },
-      { label: "Careers", href: "#" },
-      { label: "Customers", href: "#" },
-      { label: "Press kit", href: "#" },
+      { label: "About" },
+      { label: "Careers" },
+      { label: "Customers" },
+      { label: "Press kit" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Docs", href: "#" },
-      { label: "Help centre", href: "#" },
-      { label: "Security", href: "#" },
-      { label: "Status", href: "#" },
+      { label: "Docs" },
+      { label: "Help centre" },
+      { label: "Security" },
+      { label: "Status" },
     ],
   },
 ];
 
 export const socials: Social[] = [
-  { key: "x", label: "NOVA on X", href: "#" },
-  { key: "linkedin", label: "NOVA on LinkedIn", href: "#" },
-  { key: "github", label: "NOVA on GitHub", href: "#" },
-  { key: "youtube", label: "NOVA on YouTube", href: "#" },
+  { key: "x", label: "NOVA on X" },
+  { key: "linkedin", label: "NOVA on LinkedIn" },
+  { key: "github", label: "NOVA on GitHub" },
+  { key: "youtube", label: "NOVA on YouTube" },
 ];
