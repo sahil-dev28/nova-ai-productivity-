@@ -21,18 +21,23 @@ export function NewsletterForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { email: "" },
   });
 
+  const email = register("email");
   const message = errors.email?.message ?? (subscribed ? finalCta.success : "");
 
   return (
     <form
       noValidate
-      onSubmit={handleSubmit(() => setSubscribed(true))}
+      onSubmit={handleSubmit(() => {
+        setSubscribed(true);
+        reset();
+      })}
       className="mt-9"
     >
       <div className="flex flex-wrap items-center justify-center gap-3">
@@ -48,7 +53,11 @@ export function NewsletterForm() {
           aria-invalid={errors.email ? true : undefined}
           aria-describedby="newsletter-status"
           className="h-12 w-full max-w-[320px] rounded-control border border-line-strong bg-surface px-4 text-[15px] text-ink placeholder:text-muted"
-          {...register("email")}
+          {...email}
+          onChange={(event) => {
+            setSubscribed(false);
+            return email.onChange(event);
+          }}
         />
 
         <Button
