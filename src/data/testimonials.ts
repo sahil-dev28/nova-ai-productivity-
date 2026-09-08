@@ -25,13 +25,13 @@ export const testimonials: Testimonial[] = [
     avatar: "one",
   },
   {
-    id: "marcus",
+    id: "rohan",
     quote:
       "The automations actually read context. Launch checklists assign themselves now, and nobody has spent a Friday chasing status since.",
-    name: "Marcus Bell",
+    name: "Rohan Mehta",
     role: "Head of Marketing",
     company: "Northwind",
-    initials: "MB",
+    initials: "RM",
     avatar: "two",
   },
   {
