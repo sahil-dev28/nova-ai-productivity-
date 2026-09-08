@@ -41,21 +41,12 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
     Autoplay({
       delay: AUTOPLAY_DELAY,
       playOnInit: false,
-      // Every pause is decided below, so the plugin's own hover and focus
-      // handling stays off. stopOnInteraction is left on only to keep it from
-      // binding a pointerUp of its own that would race ours on the way out of
-      // a drag; resuming after one is our job.
       stopOnInteraction: true,
       stopOnMouseEnter: false,
       stopOnFocusIn: false,
     }),
   );
 
-  // Deliberately not looping. Without loop the reset off the last testimonial
-  // travels back across every card that was already shown rather than
-  // seam-jumping to the first, and because that rewind covers the whole track
-  // in one scroll it reads as a quick sweep right. Autoplay does it for us:
-  // the plugin falls back to scrollTo(0) once canScrollNext goes false.
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: false, align: "start", duration: 30 },
     [autoplay],
@@ -65,8 +56,6 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const [selected, setSelected] = useState(0);
 
-  // One node, two refs: Embla drives the carousel from it and the hover gate
-  // below listens on it.
   const setViewport = useCallback(
     (node: HTMLDivElement | null) => {
       viewportRef.current = node;
@@ -75,9 +64,6 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
     [emblaRef],
   );
 
-  // Autoplay runs unless one of these says otherwise. Nothing latches on the
-  // way in: reading a card or dragging it pauses the timer, and it picks up
-  // again the moment the reader is done.
   const reading = useRef(false);
   const keyboardFocus = useRef(false);
   const onScreen = useRef(true);
@@ -97,10 +83,6 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
     }
   }, [emblaApi]);
 
-  // The arrows wrap the same way the timer does, sweeping across the track
-  // instead of dead-ending at either edge. Driving one restarts the countdown
-  // rather than ending it, so a reader who steps forward by hand still gets a
-  // full interval on the card they picked before the timer takes over again.
   const goPrev = useCallback(() => {
     if (!emblaApi) return;
     if (emblaApi.canScrollPrev()) emblaApi.scrollPrev();
@@ -124,16 +106,11 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
 
     readSelected();
 
-    // The plugin stops the timer on pointerDown; picking it back up once the
-    // drag is over is left to us, through the same gate as everything else.
     emblaApi
       .on("select", readSelected)
       .on("reInit", readSelected)
       .on("pointerUp", sync);
 
-    // Hovering the quote pauses it so it can be read. The arrows sit outside
-    // the viewport on purpose: resting the pointer on them after a click must
-    // not hold the carousel still.
     const startReading = () => {
       reading.current = true;
       sync();
@@ -147,10 +124,6 @@ export function TestimonialsCarousel({ items }: { items: Testimonial[] }) {
     viewport.addEventListener("mouseenter", startReading);
     viewport.addEventListener("mouseleave", stopReading);
 
-    // Only a keyboard landing pauses. A pointer press may focus the arrow as
-    // well, and pausing on that would stop the carousel for the very gesture
-    // meant to drive it. Keyboard users still get the pause that lets them
-    // read at their own speed.
     const focusIn = (event: FocusEvent) => {
       const target = event.target;
       if (target instanceof Element && target.matches(":focus-visible")) {
