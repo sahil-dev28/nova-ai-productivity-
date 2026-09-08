@@ -69,7 +69,7 @@ export function PricingPlans() {
             >
               <div
                 className={cn(
-                  "flex h-full flex-col rounded-card border p-7 transition-[transform,border-color,box-shadow] duration-300 ease-out-soft hover:-translate-y-1.5 hover:shadow-lift",
+                  "flex h-full flex-col rounded-card border p-7 transition-[translate,border-color,box-shadow] duration-500 ease-card hover:-translate-y-1.5 hover:shadow-lift",
                   plan.popular
                     ? "border-accent-40 bg-accent-08"
                     : "border-line bg-surface hover:border-accent-40",
