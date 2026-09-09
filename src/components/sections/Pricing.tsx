@@ -9,10 +9,10 @@ export function Pricing() {
     <Section id="pricing" tier="standard" aria-labelledby="pricing-title">
       <Reveal>
         <SectionHeading
+          number="05"
           id="pricing-title"
           eyebrow={pricingIntro.eyebrow}
           title={pricingIntro.title}
-          align="center"
         />
       </Reveal>
 

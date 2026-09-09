@@ -9,6 +9,7 @@ export function Solutions() {
     <Section id="solutions" tier="standard" aria-labelledby="solutions-title">
       <Reveal>
         <SectionHeading
+          number="03"
           id="solutions-title"
           eyebrow={solutionsIntro.eyebrow}
           title={solutionsIntro.title}

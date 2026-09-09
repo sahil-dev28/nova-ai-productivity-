@@ -8,6 +8,7 @@ export function HowItWorks() {
     <Section id="how-it-works" tier="standard" aria-labelledby="how-it-works-title">
       <Reveal>
         <SectionHeading
+          number="02"
           id="how-it-works-title"
           eyebrow={stepsIntro.eyebrow}
           title={stepsIntro.title}

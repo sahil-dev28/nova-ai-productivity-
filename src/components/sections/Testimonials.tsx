@@ -17,6 +17,7 @@ export function Testimonials() {
           </span>
 
           <SectionHeading
+          number="04"
             id="testimonials-title"
             title={testimonialsIntro.title}
             supporting={testimonialsIntro.supporting}
