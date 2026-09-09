@@ -1,7 +1,8 @@
 import { Container } from "@/components/common/Container";
 import { Logo } from "@/components/common/Logo";
 import { SocialIcon } from "@/components/common/SocialIcon";
-import { footerBrand, footerColumns, socials } from "@/data/footerLinks";
+import { footerBrand, footerColumns, newsletter, socials } from "@/data/footerLinks";
+import { NewsletterForm } from "./NewsletterForm";
 
 const SOCIAL_BOX =
   "inline-flex size-11 items-center justify-center rounded-control border border-line text-muted";
@@ -70,7 +71,21 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="mt-14 border-t border-line pt-8 text-[13.5px] text-muted">
+        <div className="mt-14 grid grid-cols-[1fr_2fr] gap-x-16 gap-y-8 border-t border-line pt-10 max-split:grid-cols-1">
+          <div>
+            <p className="font-heading text-eyebrow uppercase text-ink">
+              {newsletter.title}
+            </p>
+
+            <p className="mt-4 max-w-[320px] text-[14.5px] text-muted">
+              {newsletter.blurb}
+            </p>
+          </div>
+
+          <NewsletterForm />
+        </div>
+
+        <p className="mt-12 border-t border-line pt-8 text-[13.5px] text-muted">
           {footerBrand.copyright}
         </p>
       </Container>

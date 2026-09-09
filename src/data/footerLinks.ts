@@ -22,6 +22,16 @@ export const footerBrand = {
   copyright: "© 2026 NOVA Labs, Inc. All rights reserved.",
 } as const;
 
+export const newsletter = {
+  title: "The monthly dispatch",
+  blurb: "One email a month. Real workflows from real teams, nothing else.",
+  label: "Work email",
+  placeholder: "you@company.com",
+  submit: "Subscribe",
+  success: "You're on the list — check your inbox to confirm.",
+  error: "Enter a valid work email to subscribe.",
+} as const;
+
 export const footerColumns: FooterColumn[] = [
   {
     title: "Product",
