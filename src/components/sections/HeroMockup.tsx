@@ -11,7 +11,7 @@ const ROWS = [
 export function HeroMockup() {
   return (
     <Ambient className="relative animate-[nova-float_9s_ease-in-out_infinite]">
-      <div className="rounded-panel border border-line bg-bg-2 shadow-panel">
+      <div className="rounded-panel border border-line bg-bg-2">
         <div className="flex items-center gap-2 border-b border-line px-5 py-4">
           <span className="size-2.5 rounded-full bg-line-strong" />
           <span className="size-2.5 rounded-full bg-line-strong" />

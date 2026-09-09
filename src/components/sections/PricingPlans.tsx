@@ -89,7 +89,7 @@ export function PricingPlans() {
                   {plan.description}
                 </p>
 
-                <p className="mt-7 font-heading text-price text-ink">
+                <p className="mt-7 font-heading text-price tabular-nums text-ink">
                   {plan.price[cycle]}
                 </p>
                 <p className="mt-2 text-[13.5px] text-muted">

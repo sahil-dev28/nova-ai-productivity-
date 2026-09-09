@@ -11,7 +11,7 @@ const TAG_TONE = {
 export function ProductVisual({ visual }: { visual: Visual }) {
   if (visual.kind === "chart") {
     return (
-      <div className="rounded-panel border border-line bg-bg-2 p-6 shadow-panel">
+      <div className="rounded-panel border border-line bg-bg-2 p-6">
         <div className="flex items-baseline justify-between gap-4">
           <p className="text-[13px] font-medium text-muted">{visual.caption}</p>
           <p className="font-heading text-[15px] font-bold text-accent">
@@ -42,7 +42,7 @@ export function ProductVisual({ visual }: { visual: Visual }) {
           {visual.stats.map((stat) => (
             <div key={stat.label}>
               <dt className="sr-only">{stat.label}</dt>
-              <dd className="font-heading text-[22px] font-bold tracking-[-0.03em] text-ink">
+              <dd className="font-heading text-[22px] font-bold tabular-nums tracking-[-0.03em] text-ink">
                 {stat.value}
               </dd>
               <p className="mt-1 text-[12.5px] text-muted">{stat.label}</p>

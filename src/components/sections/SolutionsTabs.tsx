@@ -23,7 +23,7 @@ export function SolutionsTabs() {
 
       {solutions.map((solution) => (
         <TabsContent key={solution.id} value={solution.id}>
-          <div className="grid grid-cols-[1fr_0.85fr] gap-x-12 gap-y-8 rounded-panel border border-line bg-surface p-8 shadow-panel max-split:grid-cols-1">
+          <div className="grid grid-cols-[1fr_0.85fr] gap-x-12 gap-y-8 rounded-panel border border-line bg-surface p-8 max-split:grid-cols-1">
             <div>
               <h3 className="text-h2-block text-balance text-ink">
                 {solution.headline}
@@ -52,7 +52,7 @@ export function SolutionsTabs() {
               <dl className="mt-7 flex flex-wrap gap-x-10 gap-y-4 border-t border-line pt-6">
                 {solution.metrics.map((metric) => (
                   <div key={metric.label}>
-                    <dd className="font-heading text-[26px] font-bold tracking-[-0.03em] text-accent">
+                    <dd className="font-heading text-[26px] font-bold tabular-nums tracking-[-0.03em] text-accent">
                       {metric.value}
                     </dd>
                     <dt className="mt-1 text-[13px] text-muted">
