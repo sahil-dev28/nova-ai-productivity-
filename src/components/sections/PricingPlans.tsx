@@ -60,18 +60,19 @@ export function PricingPlans() {
       </Reveal>
 
       <Reveal stagger>
-        <ul className="mt-gap-cards grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] items-start gap-4">
+        <ul className="mt-gap-cards grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] items-stretch gap-4">
           {pricingPlans.map((plan, index) => (
             <li
               key={plan.id}
               data-stagger=""
               style={{ "--stagger-delay": `${index * 0.08}s` } as CSSProperties}
+              className={cn(plan.popular && "split:-my-10")}
             >
               <div
                 className={cn(
-                  "flex h-full flex-col rounded-card border p-7 transition-[translate,border-color,box-shadow] duration-500 ease-card hover:-translate-y-1.5 hover:shadow-lift",
+                  "flex h-full flex-col rounded-card border p-7 transition-[translate,border-color,background-color] duration-500 ease-card hover:-translate-y-1 hover:border-accent-40 hover:bg-surface-2",
                   plan.popular
-                    ? "border-accent-40 bg-accent-08"
+                    ? "border-accent-40 bg-accent-08 ring-1 ring-accent-18 split:p-9"
                     : "border-line bg-surface hover:border-accent-40",
                 )}
               >
