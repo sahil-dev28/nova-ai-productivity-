@@ -216,6 +216,16 @@
     font-family: var(--font-heading);
   }
 
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  summary {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
   body[data-scroll-locked] {
     margin-right: 0 !important;
   }
