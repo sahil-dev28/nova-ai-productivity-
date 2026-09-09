@@ -8,38 +8,6 @@
 /* Palette */
 
 :root {
-  --bg: #100710;
-  --bg-2: #170b17;
-  --surface: rgba(255, 107, 138, 0.04);
-  --surface-2: rgba(255, 107, 138, 0.07);
-  --border: rgba(255, 138, 165, 0.16);
-  --border-strong: rgba(255, 138, 165, 0.3);
-  --text: #fceef3;
-  --muted: #a8848f;
-  --accent: #ff6b8a;
-  --accent-ink: #180710;
-  --accent-08: rgba(255, 107, 138, 0.09);
-  --accent-18: rgba(255, 107, 138, 0.2);
-  --accent-40: rgba(255, 107, 138, 0.48);
-  --glow: rgba(255, 107, 138, 0.3);
-  --glow-2: rgba(198, 120, 255, 0.2);
-  --nav: rgba(16, 7, 16, 0.72);
-  --shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.9);
-
-  /* Brand gradients */
-  --mark-from: #ff9db3;
-  --mark-to: #e0457a;
-  --avatar-1-from: #ff6b8a;
-  --avatar-1-to: #b3123f;
-  --avatar-2-from: #c678ff;
-  --avatar-2-to: #6b2ec9;
-  --avatar-3-from: #ffb86b;
-  --avatar-3-to: #c96a1f;
-  --avatar-4-from: #6fe3ff;
-  --avatar-4-to: #1f7fa8;
-}
-
-.light {
   --bg: #fdf8fa;
   --bg-2: #f6ecf0;
   --surface: #ffffff;
@@ -57,6 +25,38 @@
   --glow-2: rgba(198, 120, 255, 0.14);
   --nav: rgba(253, 248, 250, 0.75);
   --shadow: 0 20px 50px -28px rgba(60, 12, 30, 0.28);
+
+  /* Brand gradients */
+  --mark-from: #ff9db3;
+  --mark-to: #e0457a;
+  --avatar-1-from: #ff6b8a;
+  --avatar-1-to: #b3123f;
+  --avatar-2-from: #c678ff;
+  --avatar-2-to: #6b2ec9;
+  --avatar-3-from: #ffb86b;
+  --avatar-3-to: #c96a1f;
+  --avatar-4-from: #6fe3ff;
+  --avatar-4-to: #1f7fa8;
+}
+
+.dark {
+  --bg: #100710;
+  --bg-2: #170b17;
+  --surface: rgba(255, 107, 138, 0.04);
+  --surface-2: rgba(255, 107, 138, 0.07);
+  --border: rgba(255, 138, 165, 0.16);
+  --border-strong: rgba(255, 138, 165, 0.3);
+  --text: #fceef3;
+  --muted: #a8848f;
+  --accent: #ff6b8a;
+  --accent-ink: #180710;
+  --accent-08: rgba(255, 107, 138, 0.09);
+  --accent-18: rgba(255, 107, 138, 0.2);
+  --accent-40: rgba(255, 107, 138, 0.48);
+  --glow: rgba(255, 107, 138, 0.3);
+  --glow-2: rgba(198, 120, 255, 0.2);
+  --nav: rgba(16, 7, 16, 0.72);
+  --shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.9);
 }
 
 @theme inline {
@@ -191,11 +191,11 @@
     scroll-behavior: smooth;
     scrollbar-gutter: stable;
     background-color: var(--bg);
-    color-scheme: dark;
+    color-scheme: light;
   }
 
-  html.light {
-    color-scheme: light;
+  html.dark {
+    color-scheme: dark;
   }
 
   body {
