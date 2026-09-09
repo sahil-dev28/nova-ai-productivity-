@@ -7,6 +7,10 @@ export type Stat = {
   label: string;
 };
 
+export const statsIntro = {
+  eyebrow: "Statistics",
+} as const;
+
 export const stats: Stat[] = [
   {
     display: "4,200+",

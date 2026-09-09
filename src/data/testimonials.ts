@@ -9,6 +9,7 @@ export type Testimonial = {
 };
 
 export const testimonialsIntro = {
+  eyebrow: "Testimonials",
   title: "Teams stopped managing the tool",
   supporting: "Hear it first hand, from the people who run their week on NOVA.",
 } as const;
