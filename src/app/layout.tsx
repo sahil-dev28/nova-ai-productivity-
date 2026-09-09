@@ -1,18 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Space_Grotesk } from "next/font/google";
+import { Bricolage_Grotesque, Manrope } from "next/font/google";
 import { MotionGate } from "@/components/common/MotionGate";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const display = Bricolage_Grotesque({
+  variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
 });
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const body = Manrope({
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
@@ -100,7 +100,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${spaceGrotesk.variable} ${manrope.variable} h-full`}
+      className={`${display.variable} ${body.variable} h-full`}
     >
       <body className="flex min-h-full flex-col">
         <script
