@@ -2,7 +2,7 @@ import { Ambient } from "@/components/common/Ambient";
 import { Container } from "@/components/common/Container";
 import { Reveal } from "@/components/common/Reveal";
 import { finalCta } from "@/data/cta";
-import { NewsletterForm } from "./NewsletterForm";
+import { GetStartedCta } from "./GetStartedCta";
 
 export function FinalCta() {
   return (
@@ -26,7 +26,7 @@ export function FinalCta() {
               {finalCta.supporting}
             </p>
 
-            <NewsletterForm />
+            <GetStartedCta />
           </div>
         </Reveal>
       </Container>
