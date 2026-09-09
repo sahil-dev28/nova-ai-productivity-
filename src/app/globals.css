@@ -189,6 +189,7 @@
   html {
     scroll-padding-top: 96px;
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
     background-color: var(--bg);
     color-scheme: dark;
   }
@@ -213,6 +214,10 @@
   h5,
   h6 {
     font-family: var(--font-heading);
+  }
+
+  body[data-scroll-locked] {
+    margin-right: 0 !important;
   }
 
   :focus-visible {
