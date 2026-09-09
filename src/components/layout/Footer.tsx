@@ -1,4 +1,5 @@
 import { Container } from "@/components/common/Container";
+import { Eyebrow } from "@/components/common/Eyebrow";
 import { Logo } from "@/components/common/Logo";
 import { SocialIcon } from "@/components/common/SocialIcon";
 import { footerBrand, footerColumns, newsletter, socials } from "@/data/footerLinks";
@@ -73,11 +74,13 @@ export function Footer() {
 
         <div className="mt-14 grid grid-cols-[1fr_2fr] gap-x-16 gap-y-8 border-t border-line pt-10 max-split:grid-cols-1">
           <div>
-            <p className="font-heading text-eyebrow uppercase text-ink">
+            <Eyebrow>{newsletter.eyebrow}</Eyebrow>
+
+            <p className="mt-3 font-heading text-h3 text-ink">
               {newsletter.title}
             </p>
 
-            <p className="mt-4 max-w-[320px] text-[14.5px] text-muted">
+            <p className="mt-3 max-w-[320px] text-[14.5px] text-muted">
               {newsletter.blurb}
             </p>
           </div>

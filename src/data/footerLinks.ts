@@ -23,6 +23,7 @@ export const footerBrand = {
 } as const;
 
 export const newsletter = {
+  eyebrow: "Newsletter",
   title: "The monthly dispatch",
   blurb: "One email a month. Real workflows from real teams, nothing else.",
   label: "Work email",
