@@ -236,18 +236,62 @@ contrast number does not tell you everything.
 
 ## How AI tools were used
 
-I used Claude Code as an assistant while building this, mainly for debugging,
-checking my reasoning on accessibility, and writing repetitive code faster.
-Most of the problems listed above were found by measuring the page — computed
-styles, element positions before and after an interaction — which is slow by
-hand.
+I used Claude Code throughout. The useful part was not that it writes code
+quickly — it is that it will do what you actually specify, which means the
+quality of the result depends on how well you can describe what you want and
+how carefully you check what comes back.
 
-The decisions are mine. The brand and colours, the fonts, the layout of each
-section, how the navbar behaves, the wave in the hero, the testimonial
-carousel, and the choice not to use an animation library were all mine to
-make, and I changed direction several times before settling.
+**How I worked**
 
-I read everything that went into the repo. The two things I did not understand
-at first were the tailwind-merge behaviour and the scroll-lock margin, so I
-worked through both until I could explain them — which is why they are written
-up above rather than quietly fixed.
+**I planned before I prompted.** Before writing anything I went through the
+brief and listed the thirteen sections, the seven required interactions and
+the eight bonus items, so I knew what finished looked like. Every piece of
+work was against that list rather than against a vague idea of a landing page.
+
+**I described intent, not instructions.** Asking for "a nicer hero" gets you
+something generic. Saying "the dots should be bigger near the middle of the
+band and fade at the edges, and the rows need to follow the curve so the band
+does not get thicker when it bends" gets you the thing in your head. Most of
+my time went on being specific.
+
+**I asked for options and chose between them.** For the palette I looked at
+six candidates side by side before picking rose. For the display font I
+compared five in the real page rather than in a specimen. Seeing them in
+context is the only way to judge them, and it means I can say why I chose one
+over the others.
+
+**I reviewed on the page, not in the diff.** Code that reads correctly can
+still be wrong on screen. The navbar pills were a good example — perfectly
+sensible code, and invisible in the browser because the colour was the page
+background at low opacity. I found that by scrolling the real page, not by
+reading the component.
+
+**I rejected things and said why.** The hero wave went through five or six
+versions. Each time I said what was wrong with it — too busy, wrong shape, not
+tapered, sitting too high — rather than just asking again. The version in the
+repo is the one that finally matched what I wanted.
+
+**I set constraints and held them.** One approach to animation rather than a
+mix. No changes to the copy while reworking layout. Nothing added that I could
+not explain. Constraints like these are what stop a project drifting into
+something that works but that nobody understands.
+
+**I verified rather than assumed.** Things like contrast ratios, whether a
+layout actually shifts, whether every required section is really on the page —
+those were measured, not eyeballed. Several of the problems above only showed
+up because I checked the numbers.
+
+**What I decided**
+
+The brand and colours, the fonts, the layout of each section, how the navbar
+behaves, the wave in the hero, the testimonial carousel, and the choice not to
+use an animation library. I changed direction several times on most of those
+before settling.
+
+**What I made sure I understood**
+
+I read everything that went into the repo. The two things I did not follow at
+first were the tailwind-merge behaviour and the scroll-lock margin. I worked
+through both until I could explain them, which is why they are written up
+above rather than quietly fixed. If I could not explain a piece of code, it
+did not stay.
